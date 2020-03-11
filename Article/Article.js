@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'I MADE THIS ARTICLE!?!?',
+    date: 'MARCH MADNESS 2020',
+    firstParagraph:' WOW I DONT HAVE THE TIME!',
+    secondParagraph: 'NO REALLY I LOST TRACK OF TIME!',
+    thirdParagraph:'IGHT IMMA HEAD OUT!!'
   }
 ];
 
@@ -112,3 +119,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function articleCreator(data){
+  //create elements
+  const artDiv = document.createElement('div');
+  const artTitle = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const artPara1 = document.createElement('p');
+  const artPara2 = document.createElement('p');
+  const artPara3 = document.createElement('p');
+  const artBtn = document.createElement('span');
+
+  // setup structure
+  artDiv.append(artTitle);
+  artDiv.append(artDate);
+  artDiv.append(artPara1);
+  artDiv.append(artPara2);
+  artDiv.append(artPara3);
+  artDiv.append(artBtn);
+  // add classes
+  artDiv.classList.add('article');
+  artDate.classList.add('date');
+  artBtn.classList.add('expandButton');
+
+  // set text content
+  artBtn.textContent = 'Expand';
+  artTitle.textContent = data.title;
+  artDate.textContent = data.date;
+  artPara1.textContent = data.firstParagraph;
+  artPara2.textContent = data.secondParagraph;
+  artPara3.textContent = data.thirdParagraph;
+
+  //button toggle
+  artBtn.addEventListener('click', (event) => {
+    artDiv.classList.toggle('article-open');
+  });
+
+  return artDiv;
+}
+
+const articleCon = document.querySelector('.articles')
+data.forEach( data => {
+  console.log(data);
+  articleCon.appendChild(articleCreator(data))
+})
